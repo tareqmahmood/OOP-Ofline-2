@@ -180,6 +180,15 @@ void LinkedList::addLast(Element e)
 
 void LinkedList::clear()
 {
+    Element *temp = head;
+    Element *temp2;
+    for(int i = 0; i < size; i++)
+    {
+        temp2 = temp;
+        temp = temp->getNext();
+        //free(temp2);
+        delete temp2;
+    }
     head = 0;
     tail = 0;
     size = 0;
@@ -306,7 +315,8 @@ bool LinkedList::remove(Element e)
         temp->getNext()->setPrev(temp->getPrev());
     }
     size--;
-    free(temp);
+    //free(temp);
+    delete temp;
     return true;
 }
 
